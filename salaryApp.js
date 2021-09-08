@@ -80,8 +80,12 @@ const initialCountListener = function () {
 };
 
 function addRecordHandler() {
-    const name = document.getElementById("name").value;
-    const salary = document.getElementById("salary").value;
+    const nameField = document.getElementById("name");
+    const salaryField = document.getElementById("salary");
+    const name = nameField.value;
+    const salary = salaryField.value;
+    nameField.value = "";
+    salaryField.value = "";
 
     if (!name || !salary) {
         showDataError(name, salary);
@@ -136,38 +140,38 @@ const displayLastItemDialog = function (lastItem) {
     document.getElementById("showSalary").innerText = d3.format(",.0f")(
         lastItem.salary
     );
-    dlg.dialog({
+    /* dlg.dialog({
         buttons: {
             Ok: function () {
                 $(this).dialog("close");
             },
         },
-    });
+    }); */
 };
 
 var showDataError = function (name, salary) {
-    const dlg = document.getElementById("#dialog-error");
+    const dlg = document.getElementById("dialog-error");
     dlg.classList.remove("hide");
 
-    toggleErrorMessage("#newName", name, "Who the hell you are talking about!");
-    toggleErrorMessage("#newSalary", salary, "How much that guy make!");
+    toggleErrorMessage("newName", name, "Who the hell you are talking about!");
+    toggleErrorMessage("newSalary", salary, "How much that guy make!");
 
-    dlg.dialog({
+    /* dlg.dialog({
         width: 600,
         buttons: {
             Ok: function () {
                 $(this).dialog("close");
             },
         },
-    });
+    }); */
 };
 
 function toggleErrorMessage(selector, value, msg) {
     if (value) {
-        document.getElementById(selector + "line").style.display = "none";
-    } else {
-        document.getElementById(selector + "line").style.display = "block";
+        document.getElementById(selector).style.display = "block";
         document.getElementById(selector).innerText = msg;
+    } else {
+        document.getElementById(selector).style.display = "none";
     }
 }
 
@@ -178,13 +182,13 @@ const showRecordCount = function (data) {
 
     document.getElementById("numberOfRecords").innerText = data.length;
 
-    dlg.dialog({
+    /* dlg.dialog({
         buttons: {
             Ok: function () {
                 $(this).dialog("close");
             },
         },
-    });
+    }); */
 };
 
 const anotherRecordCountHandler = function anotherRecordCountHandler(e) {
