@@ -12,7 +12,10 @@
         />
         <script src="scripts/d3.js"></script>
         <script src="scripts/nv.d3.js"></script>
-        <link rel="stylesheet" href="styles/bootstrap.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+        />
         <link rel="stylesheet" href="styles/nv.d3.css" />
         <link
             rel="stylesheet"
@@ -54,20 +57,10 @@
             <p>Salary, the Promised amount you never get</p>
         </div>
         <div class="form-inline text-center">
-            <div class="form-group">
-                <input
-                    class="form-control"
-                    type="text"
-                    id="name"
-                    placeholder="Name"
-                />
-                <input
-                    class="form-control"
-                    type="text"
-                    id="salary"
-                    placeholder="Salary"
-                />
-                <button class="btn btn-success form-control" id="AddRecord">
+            <div class="form-group form-control">
+                <input type="text" id="name" placeholder="Name" />
+                <input type="text" id="salary" placeholder="Salary" />
+                <button class="btn btn-success" id="AddRecord">
                     Add Record
                 </button>
                 <button class="btn btn-info" id="showLast">Show Last</button>
@@ -83,14 +76,14 @@
 
         <div
             id="dialog-last-item"
-            class="hide dialog"
+            class="d-none dialog"
             title="Last Item in the Chart"
         >
             <p>Name: <span id="showName" class="text-success"></span></p>
             <p>Salary: <span id="showSalary" class="text-success"></span></p>
         </div>
 
-        <div id="dialog-error" class="hide dialog" title="Be careful Dude !">
+        <div id="dialog-error" class="d-none dialog" title="Be careful Dude !">
             <p id="newNameLine">
                 Name: <span id="newName" class="text-warning"></span>
             </p>
@@ -102,7 +95,7 @@
 
         <div
             id="dialog-record-count"
-            class="hide dialog"
+            class="d-none dialog"
             title="Number of Records"
         >
             <p>
@@ -110,8 +103,10 @@
                 <span id="numberOfRecords" class="text-success"></span>
             </p>
         </div>
-        <h3 class="text-primary hide">
+        <h3 class="text-primary d-none">
             Initial Count: <span id="initial-count"></span>
         </h3>
+        <!-- bootstrap js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

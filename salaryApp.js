@@ -88,7 +88,7 @@ function addRecordHandler() {
     salaryField.value = "";
 
     if (!name || !salary) {
-        showDataError(name, salary);
+        showDataError();
         return;
     }
 
@@ -135,60 +135,32 @@ const loadFirebaseData = function (resHandler) {
 
 const displayLastItemDialog = function (lastItem) {
     const dlg = document.getElementById("dialog-last-item");
-    dlg.classList.remove("hide");
+    dlg.classList.remove("d-none");
     document.getElementById("showName").innerText = lastItem.name;
     document.getElementById("showSalary").innerText = d3.format(",.0f")(
         lastItem.salary
     );
-    /* dlg.dialog({
-        buttons: {
-            Ok: function () {
-                $(this).dialog("close");
-            },
-        },
-    }); */
 };
 
-var showDataError = function (name, salary) {
+var showDataError = function () {
     const dlg = document.getElementById("dialog-error");
-    dlg.classList.remove("hide");
+    dlg.classList.remove("d-none");
 
-    toggleErrorMessage("newName", name, "Who the hell you are talking about!");
-    toggleErrorMessage("newSalary", salary, "How much that guy make!");
-
-    /* dlg.dialog({
-        width: 600,
-        buttons: {
-            Ok: function () {
-                $(this).dialog("close");
-            },
-        },
-    }); */
+    toggleErrorMessage("newName", "Entered no Name");
+    toggleErrorMessage("newSalary", "You got no salary");
 };
 
-function toggleErrorMessage(selector, value, msg) {
-    if (value) {
-        document.getElementById(selector).style.display = "block";
-        document.getElementById(selector).innerText = msg;
-    } else {
-        document.getElementById(selector).style.display = "none";
-    }
+function toggleErrorMessage(selector, msg) {
+    document.getElementById(selector).style.display = "inline";
+    document.getElementById(selector).innerText = msg;
 }
 
 const showRecordCount = function (data) {
     const dlg = document.getElementById("dialog-record-count");
 
-    dlg.classList.remove("hide");
+    dlg.classList.remove("d-none");
 
     document.getElementById("numberOfRecords").innerText = data.length;
-
-    /* dlg.dialog({
-        buttons: {
-            Ok: function () {
-                $(this).dialog("close");
-            },
-        },
-    }); */
 };
 
 const anotherRecordCountHandler = function anotherRecordCountHandler(e) {
