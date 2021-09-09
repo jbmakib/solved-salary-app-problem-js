@@ -1,3 +1,6 @@
+document.getElementById("dialog-error").style.display = "none";
+document.getElementById("dialog-record-count").style.display = "none";
+document.getElementById("dialog-last-item").style.display = "none";
 // Initialize Chart
 function initializeChart(data) {
     var chartData = formatChartData(data);
@@ -71,6 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const showRecordCountListener = function (chartItems) {
     console.log(Object.values(chartItems).length);
+    document.getElementById("dialog-record-count").style.display = "block";
+    document.getElementById("dialog-record-count").innerHTML = `<h1>${
+        Object.values(chartItems).length
+    }</h1>`;
+    document.getElementById("dialog-error").style.display = "none";
+    document.getElementById("dialog-last-item").style.display = "none";
 };
 
 const initialCountListener = function () {
