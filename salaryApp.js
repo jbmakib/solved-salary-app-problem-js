@@ -133,6 +133,7 @@ const showLastItem = function () {
     }
     const lastItem = items[lastKey];
     const lastRecord = getRecord(lastItem.name, lastItem.salary);
+    openModal("Last Item", lastItem.name, lastItem.salary);
     document.getElementById("dialog-error").style.display = "none";
     document.getElementById("dialog-record-count").style.display = "none";
     document.getElementById("dialog-last-item").style.display = "block";
@@ -224,4 +225,14 @@ const uniquifyNames = function (items) {
         }
         return item;
     });
+};
+
+const openModal = (label = "Modal", des1 = "", des2) => {
+    const modalLabel1 = document.getElementById("modalLabel1");
+    const modalBody1 = document.getElementById("modal-body1");
+    modalLabel1.innerText = label;
+    modalBody1.innerHTML = `
+    <h1>${des1}</h1>
+    ${des2 ? "<h1>Salary: " + des2 + " Taka</h1>" : ""}
+    `;
 };

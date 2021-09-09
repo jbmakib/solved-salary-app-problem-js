@@ -63,8 +63,20 @@
                 <button class="btn btn-success" id="AddRecord">
                     Add Record
                 </button>
-                <button class="btn btn-info" id="showLast">Show Last</button>
-                <button class="btn btn-info" id="recordCount">
+                <button
+                    class="btn btn-info"
+                    id="showLast"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal1"
+                >
+                    Show Last
+                </button>
+                <button
+                    class="btn btn-info"
+                    id="recordCount"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal1"
+                >
                     Record Count
                 </button>
             </div>
@@ -102,6 +114,39 @@
         <h3 class="text-primary d-none">
             Initial Count: <span id="initial-count"></span>
         </h3>
+
+        <!-- modal starts -->
+        <div
+            class="modal fade"
+            id="modal1"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel1"></h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body" id="modal-body1"></div>
+                    <div class="modal-footer" id="modal-footer1">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- bootstrap js -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
