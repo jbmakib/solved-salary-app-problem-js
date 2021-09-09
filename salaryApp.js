@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document
         .getElementById("recordCount")
         .addEventListener("click", function recordCountHandler(e) {
-            loadFirebaseData(showRecordCountListener);
+            showRecordCountListener(salary_data);
         });
 
     window.setTimeout(function () {
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const showRecordCountListener = function (chartItems) {
-    showRecordCount(chartItems[0].values);
+    console.log(Object.values(chartItems).length);
 };
 
 const initialCountListener = function () {
@@ -87,8 +87,8 @@ function addRecordHandler() {
     nameField.value = "";
     salaryField.value = "";
 
+    showData(name, salary);
     if (!name || !salary) {
-        showDataError();
         return;
     }
 
@@ -124,13 +124,10 @@ const showLastItem = function () {
     }
     const lastItem = items[lastKey];
     const lastRecord = getRecord(lastItem.name, lastItem.salary);
+    document.getElementById("dialog-error").style.display = "none";
+    document.getElementById("dialog-record-count").style.display = "none";
+    document.getElementById("dialog-last-item").style.display = "block";
     displayLastItemDialog(lastRecord);
-};
-
-const loadFirebaseData = function (resHandler) {
-    const data = salary_data;
-    const chartData = formatChartData(data);
-    resHandler(chartData);
 };
 
 const displayLastItemDialog = function (lastItem) {
@@ -142,17 +139,24 @@ const displayLastItemDialog = function (lastItem) {
     );
 };
 
-var showDataError = function () {
+var showData = function (name, salary) {
     const dlg = document.getElementById("dialog-error");
     dlg.classList.remove("d-none");
 
-    toggleErrorMessage("newName", "Entered no Name");
-    toggleErrorMessage("newSalary", "You got no salary");
+    toggleMessage("newName", name);
+    toggleMessage("newSalary", salary);
 };
 
-function toggleErrorMessage(selector, msg) {
+function toggleMessage(selector, value) {
+    if (!value) {
+        document.getElementById(selector).innerText = `No ${selector.slice(3)}`;
+    } else {
+        document.getElementById(selector).innerText = `${value}`;
+    }
     document.getElementById(selector).style.display = "inline";
-    document.getElementById(selector).innerText = msg;
+    document.getElementById("dialog-error").style.display = "block";
+    document.getElementById("dialog-record-count").style.display = "none";
+    document.getElementById("dialog-last-item").style.display = "none";
 }
 
 const showRecordCount = function (data) {
@@ -161,6 +165,8 @@ const showRecordCount = function (data) {
     dlg.classList.remove("d-none");
 
     document.getElementById("numberOfRecords").innerText = data.length;
+    document.getElementById("dialog-error").style.display = "none";
+    document.getElementById("dialog-last-item").style.display = "none";
 };
 
 const anotherRecordCountHandler = function anotherRecordCountHandler(e) {
