@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const showRecordCountListener = function (chartItems) {
-    console.log(Object.values(chartItems).length);
+    openModal("Total record", Object.values(chartItems).length);
     document.getElementById("dialog-record-count").style.display = "block";
     document.getElementById("dialog-record-count").innerHTML = `<h1>${
         Object.values(chartItems).length
